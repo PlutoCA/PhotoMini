@@ -2,7 +2,7 @@
 const cloud = require('wx-server-sdk')
 const CloudBase = require("@cloudbase/manager-node");
 
-// cloud.init()
+cloud.init()
 
 
 const { storage } = new CloudBase({
@@ -26,14 +26,18 @@ async function test() {
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const wxContext = cloud.getWXContext()
-  test()
-  console.log(storage);
+  const wxContext = cloud.getWXContext();
+  const res = await cloud.getOpenData({
+    list: [event.cloudID], // 假设 event.openData.list 是一个 CloudID 字符串列表
+  })
+  // test()
+  // console.log(context);
   return {
     event,
+    // context,
     openid: wxContext.OPENID,
     appid: wxContext.APPID,
     unionid: wxContext.UNIONID,
-    // data: storage
+    info: res
   }
 }
