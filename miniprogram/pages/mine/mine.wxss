@@ -1,0 +1,32 @@
+/* pages/mine.wxss */
+page {
+  background: #fff;
+  height: 100vh;
+}
+.avatar {
+  width: 65px;
+  height: 65px;
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 50%;
+  margin: 20px auto;
+}
+
+.nickname_wrap {
+  display: flex;
+  padding: 0 60rpx;
+  border: 2px 0 #000;
+}
+.nickname_wrap >   view {
+  width: 180rpx;
+}
+
+.weui-input {
+  flex: 1;
+}
+
+.submit {
+  margin-top: 60px;
+}

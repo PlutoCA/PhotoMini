@@ -1,0 +1,14 @@
+<!--pages/mine.wxml-->
+<view class='mine'>
+  <form bindsubmit="submit">
+    <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      <image class="avatar" src="{{avatarUrl}}"></image>
+    </button> 
+    <view class='nickname_wrap'>
+      <view>昵称</view>
+      <input disabled="{{!newUser}}" name='nickname' type='nickname' class='weui-input' placeholder='请输入昵称' value="{{nickname}}"  />
+    </view>
+    <button wx:if="{{newUser}}" form-type='submit' type="primary" class="submit">提交更新</button>
+    <button wx:else type="primary" class="submit" bindtap="toUpload">上传图片</button>
+  </form>
+</view>
