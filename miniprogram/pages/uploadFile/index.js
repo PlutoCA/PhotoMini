@@ -1,5 +1,5 @@
+const db = wx.cloud.database()
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -8,41 +8,71 @@ Page({
     haveGetImgSrc: false,
     envId: '',
     imgSrc: '',
-    files: []
+    files: [],
+    userInfo: undefined
   },
 
   onLoad(options) {
     this.setData({
-      envId: options.envId
-    });
+      userInfo: wx.getStorageSync('USERINFO'),
+    })
+    console.log(wx.getStorageSync('USERINFO'));
   },
 
   uploadImg() {
-    wx.showLoading({
-      title: '',
-    });
-    Promise.all(
-      this.data.files.map(item => {
-        return wx.cloud.uploadFile({
-          // 指定上传到的云路径
-          cloudPath: 'ali/' + item.url.replace(/(.*\/)*([^.]+).*/ig, "$2"),
-          // 指定要上传的文件的小程序临时文件路径
-          filePath: item.url
-        });
-      })
-    ).then(res => {
-      console.log("上传成功", res);
-      // this.setState({
-      //   imgs: res.map(item => item.fileID)
-      // }, () => {
-      //   Taro.hideLoading()
-      // })
-      wx.hideLoading()
-    })
-      .catch(e => {
-        wx.hideLoading()
-        console.log(e);
+    if (this.data.files.length) {
+      wx.showLoading({
+        title: '上传中...',
       });
+      Promise.all(
+          this.data.files.map(item => {
+            return wx.cloud.uploadFile({
+              // 指定上传到的云路径
+              cloudPath: 'ali/' + item.url.replace(/(.*\/)*([^.]+).*/ig, "$2"),
+              // 指定要上传的文件的小程序临时文件路径
+              filePath: item.url
+            });
+          })
+        ).then(res => {
+          console.log("上传成功", res);
+          const data = res.map((item) => ({
+            fileID: item.fileID,
+            type: 1,
+            ownerInfo: this.data.userInfo
+          }))
+          console.log(data);
+          Promise.all(
+            data.map((item) => {
+              return db.collection('album').add({
+                data: item
+              })
+            })
+          ).then((result) => {
+            wx.hideLoading()
+            console.log(result);
+            wx.showToast({
+              title: '牛哇，上传成功',
+              icon: 'success'
+            });
+            this.setData({
+              files: []
+            })
+          }).catch((err) => {
+            console.log('err', err);
+          })
+            
+          // wx.hideLoading()
+        })
+        .catch(e => {
+          wx.hideLoading()
+          console.log(e);
+        });
+    } else {
+      wx.showToast({
+        title: '你这啥也没有喔',
+        icon: 'none'
+      })
+    }
   },
 
   clearImgSrc() {
