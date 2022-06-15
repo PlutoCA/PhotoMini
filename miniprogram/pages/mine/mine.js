@@ -166,5 +166,10 @@ Page({
     wx.navigateTo({
       url: '/pages/uploadFile/index',
     })
+  },
+  toMyUpload() {
+    wx.navigateTo({
+      url: '/pages/myUpload/index',
+    })
   }
 })

@@ -1,0 +1,8 @@
+/* pages/myUpload/index.wxss */
+.image_box {
+  width: 100%;
+}
+.image {
+  width: 100%;
+  /* height: auto; */
+}

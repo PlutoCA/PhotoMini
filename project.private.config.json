@@ -63,6 +63,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/myUpload/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

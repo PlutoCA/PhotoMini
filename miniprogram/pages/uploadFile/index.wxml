@@ -15,4 +15,21 @@
   <view class="button_clear" bindtap="clearImgSrc" wx:if="{{haveGetImgSrc}}">清空</view>
   <!-- <view class="tip">在“资源管理器>miniprogram>pages>uploadFile>index.js”找到相应代码，体验该能力</view> -->
   <cloud-tip-modal showUploadTipProps="{{showUploadTip}}"></cloud-tip-modal>
+
+
+  <view class="page__bd page__bd_spacing">
+    <!-- <view class="weui-footer">
+      <view class="weui-footer__links">
+        <navigator class="weui-footer__link weui-wa-hotarea" url="javascript:">底部链接</navigator>
+        <navigator class="weui-footer__link weui-wa-hotarea" url="javascript:">底部链接</navigator>
+      </view>
+      <view class="weui-footer__text">Copyright &copy; 2008-2016 weui.io</view>
+    </view> -->
+      <!-- <view class="weui-footer__links">
+        <navigator class="weui-footer__link weui-wa-hotarea" >一群小伙伴</navigator>
+      </view> -->
+    <!-- <view class="weui-footer weui-footer_fixed-bottom">
+      <view class="weui-footer__text">来自一群小伙伴</view>
+    </view> -->
+  </view>
 </view>

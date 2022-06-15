@@ -10,5 +10,6 @@
     </view>
     <button wx:if="{{newUser}}" form-type='submit' type="primary" class="submit">提交更新</button>
     <button wx:else type="primary" class="submit" bindtap="toUpload">上传图片</button>
+    <button wx:if="{{!newUser}}" type="primary" bindtap="toMyUpload" style="margin-top: 20px;">已上传的图片</button>
   </form>
 </view>

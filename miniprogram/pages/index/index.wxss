@@ -1,1 +1,24 @@
 /* pages/index/index.wxss */
+page {
+  background: #fff;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+.image_box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.box {
+  width: 47%;
+}
+.image {
+  width: 100%;
+  /* height: auto; */
+}
+.owner_info {
+  font-size: 12px;
+  color: #ccc;
+}

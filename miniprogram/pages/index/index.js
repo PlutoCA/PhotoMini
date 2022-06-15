@@ -7,25 +7,21 @@ Page({
    */
   data: {
     images: [],
-    array: [{
-      message: 'foo',
-    }, {
-      message: 'bar'
-    }]
+    page: 1,
+    isEnd: false // 结束了 没有更多了
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.getImageList()
-
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
+    this.getImageList(this.data.page)
   },
 
   /**
@@ -39,32 +35,66 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    this.setData({
+      isEnd: false,
+      page: 1
+    })
+    this.getImageList(1)
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-
+    if (!this.data.isEnd) {
+      this.getImageList(this.data.page)
+    }
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-
+    return {
+      title: '这里有个靓仔快来康康~'
+    }
   },
-  getImageList() {
-    
-    db.collection('album').get({
+  getImageList(page = 1) {
+    db.collection('album').count().then(res => {
+      console.log(res);
+    })
+    db.collection('album')
+    .skip(page * 20 - 20)
+    // .limit(20) 小程序这边默认 limit 20
+    .get({
       success: (res) => {
         // res.data 是一个包含集合中有权限访问的所有记录的数据，不超过 20 条
         console.log(res.data);
         this.setData({
-          images: res.data
+          images: page === 1 ? res.data : this.data.images.concat(res.data)
         })
+        if (page === 1) {
+          wx.stopPullDownRefresh({
+            success: (res) => {},
+          })
+        }
+        if (res.data.length >= 20) { // 大于等于20 有下一页
+          this.setData({
+            page: this.data.page + 1
+          })
+        } else {
+          this.setData({
+            isEnd: true
+          })
+        }
       }
+    })
+  },
+  showImage(event) {
+    console.log(event.target.dataset.url);
+    wx.previewImage({
+      urls: this.data.images.map(item => item.fileID),
+      current: event.target.dataset.url
     })
   }
 })

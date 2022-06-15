@@ -1,0 +1,7 @@
+<!--pages/myUpload/index.wxml-->
+
+<view wx:for="{{images}}" wx:key="{{fileID}}" class="image_box">
+  <view>
+    <image src="{{item.fileID}}" mode="aspectFit" class="image" data-url="{{item.fileID}}" bindtap="showImage"></image>
+  </view>
+</view>
