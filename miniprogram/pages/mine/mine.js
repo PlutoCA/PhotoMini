@@ -63,7 +63,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    this.getOpenId();
   },
  // 新用户判断
   getOpenId() {
@@ -102,6 +102,7 @@ Page({
             })
             wx.setStorageSync('USERINFO', data[0])
           }
+          wx.stopPullDownRefresh()
         },
         fail: (e) => {
           console.log('err', e);
@@ -123,6 +124,7 @@ Page({
 
   },
   // 新增用户
+  // 得先判断一下 openId是否已存在
   add(name) {
     wx.showLoading({ title: '更新中...', mask: true })
     wx.cloud.uploadFile({
@@ -141,6 +143,7 @@ Page({
         success: (res) => {
           console.log(res, '新增用户成功');
           wx.hideLoading();
+          this.getOpenId();
         }
       })
     }).catch((e) => {
