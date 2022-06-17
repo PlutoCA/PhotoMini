@@ -1,0 +1,3 @@
+<!--components/tag/index.wxml-->
+
+<view class="tag_box" style="background-color: {{color || '#1989fa'}};">{{text}}</view>

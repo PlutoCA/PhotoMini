@@ -1,0 +1,40 @@
+/* pages/board/board.wxss */
+
+.message_box {
+  width: 96%;
+  margin: 20px auto;
+  border-radius: 10px;
+  background-color: #fff;
+  min-height: 80px;
+  font-size: 17px;
+  line-height: 1;
+  padding: 12px;
+  box-sizing: border-box;
+}
+.message_box:first-of-type {
+ margin-bottom: 0;
+}
+
+.user_info, .header {
+  display: flex;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: aquamarine;
+  border-radius: 50%;
+}
+.info {
+  margin-left: 8px;
+  font-size: 12px;
+}
+.nickname {
+  font-size: 15px;
+  font-weight: 500;
+  padding-bottom: 6px;
+  padding-right: 6px;
+}
+.content {
+  margin-top: 10px;
+  line-height: 1.2em;
+}

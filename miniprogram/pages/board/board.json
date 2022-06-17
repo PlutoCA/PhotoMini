@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "tag": "/components/tag/index"
+  },
+  "navigationBarTitleText": "留言板"
+}

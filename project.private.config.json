@@ -77,6 +77,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/board/board",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

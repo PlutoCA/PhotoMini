@@ -1,0 +1,31 @@
+<!--pages/board/board.wxml-->
+<view class="message_box">
+  <view class="user_info">
+    <image class="avatar" src="cloud://dev-3gnk1mwt2797f6aa.6465-dev-3gnk1mwt2797f6aa-1300509077/avatar/l2zfYNg1dViB92ee1f12741d86b03f75a991ba24ef97"></image>
+    <view class="info">
+      <view class="header">
+        <view class="nickname">鲲</view><tag text='靓仔'></tag>
+      </view>
+      <view class="time ">2022/6/17</view>
+    </view>
+  </view>
+  <view class="content">
+    由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
+  </view>
+</view>
+<view class="message_box">
+  <view class="user_info">
+    <image class="avatar" src="cloud://dev-3gnk1mwt2797f6aa.6465-dev-3gnk1mwt2797f6aa-1300509077/avatar/l2zfYNg1dViB92ee1f12741d86b03f75a991ba24ef97"></image>
+    <view class="info">
+      <view class="header">
+        <view class="nickname">鲲</view>
+        <tag text='靓仔'></tag>
+        <tag text='作者' color='#f50'></tag>
+      </view>
+      <view class="time ">2022/6/17</view>
+    </view>
+  </view>
+  <view class="content">
+    由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
+  </view>
+</view>
