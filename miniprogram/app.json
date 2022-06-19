@@ -4,7 +4,8 @@
     "pages/uploadFile/index",
     "pages/mine/mine",
     "pages/myUpload/index",
-    "pages/board/board"
+    "pages/board/board",
+    "pages/board_edit/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

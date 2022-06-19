@@ -84,6 +84,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/board_edit/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

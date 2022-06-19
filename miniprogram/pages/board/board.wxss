@@ -2,18 +2,18 @@
 
 .message_box {
   width: 96%;
-  margin: 20px auto;
+  margin: 16px auto 0;
   border-radius: 10px;
   background-color: #fff;
   min-height: 80px;
   font-size: 17px;
   line-height: 1;
-  padding: 12px;
+  padding: 14px;
   box-sizing: border-box;
 }
-.message_box:first-of-type {
+/* .message_box:first-of-type {
  margin-bottom: 0;
-}
+} */
 
 .user_info, .header {
   display: flex;
@@ -21,7 +21,7 @@
 .avatar {
   width: 40px;
   height: 40px;
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   border-radius: 50%;
 }
 .info {
@@ -37,4 +37,21 @@
 .content {
   margin-top: 10px;
   line-height: 1.2em;
+}
+
+.add {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  /* background-color: aqua; */
+  position: fixed;
+  z-index: 99;
+  bottom: 80px;
+  right: 40px;
+  /* background: url('cloud://dev-3gnk1mwt2797f6aa.6465-dev-3gnk1mwt2797f6aa-1300509077/avatar/add.png') no-repeat;
+  background-size: contain; */
+}
+.add:active{
+  transform: scale(0.97);
+  /* transition-duration: 2000; */
 }

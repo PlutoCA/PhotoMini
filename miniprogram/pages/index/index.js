@@ -83,6 +83,9 @@ Page({
     }
   },
   getImageList(page = 1) {
+    wx.showLoading({
+      title: '正在加载～',
+    })
     db.collection('album').count().then(res => {
       console.log(res);
     })
@@ -110,6 +113,7 @@ Page({
               isEnd: true
             })
           }
+          wx.hideLoading()
         }
       })
   },

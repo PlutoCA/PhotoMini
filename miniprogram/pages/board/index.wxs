@@ -1,0 +1,14 @@
+// 支持es4语法
+var filter = {
+	time: function(time){
+    console.log(time, getDate(time));
+    // console.log(new Date());
+    // var date = new Date(time + 8 * 3600 * 1000);
+    // return date.toJSON().substr(0, 19).replace('T', ' ').replace(/-/g, '.');
+    return getDate(time).toLocaleString()
+	}
+}
+// 导出对外暴露的属性
+module.exports = {
+	time: filter.time
+}

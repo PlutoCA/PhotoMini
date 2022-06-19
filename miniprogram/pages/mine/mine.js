@@ -63,6 +63,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
+    wx.clearStorageSync()
     this.getOpenId();
   },
  // 新用户判断
@@ -94,7 +95,7 @@ Page({
               newUser: true
             })
           } else {
-            console.log('老用户');
+            console.log('老用户', data[0]);
             this.setData({
               newUser: false,
               avatarUrl: data[0].avatar,
@@ -153,6 +154,13 @@ Page({
   submit(e) {
     console.log(e);
     const { nickname } = e.detail.value;
+    if (this.data.avatarUrl === defaultAvatarUrl) {
+      wx.showToast({
+        title: '更新一下头像呗～',
+        icon: 'none'
+      })
+      return false
+    }
     if (this.data.newUser) this.add(nickname)
   },
   onChooseAvatar(e) {

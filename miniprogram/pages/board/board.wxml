@@ -1,19 +1,28 @@
 <!--pages/board/board.wxml-->
-<view class="message_box">
+<wxs module="filter" src="./index.wxs"></wxs>
+
+<view class="message_box" wx:for="{{list}}" wx:key="{{item._id}}" data-key="{{item._openid}}" data-id="{{item._id}}" bindtap="onClick">
   <view class="user_info">
-    <image class="avatar" src="cloud://dev-3gnk1mwt2797f6aa.6465-dev-3gnk1mwt2797f6aa-1300509077/avatar/l2zfYNg1dViB92ee1f12741d86b03f75a991ba24ef97"></image>
+    <image class="avatar" src="{{item.avatar}}"></image>
     <view class="info">
       <view class="header">
-        <view class="nickname">鲲</view><tag text='靓仔'></tag>
+        <view class="nickname">{{item.nickname}}</view>
+        <!-- 匿名隐藏标签 -->
+        <view wx:if="{{item.type !== 'anonymous'}}">
+          <tag text="{{tag.text}}" wx:for-item="tag" wx:for="{{tags}}" color="{{tag.color}}"></tag>
+        </view>
       </view>
-      <view class="time ">2022/6/17</view>
+      <view class="time ">{{item.update_time}}</view>
     </view>
   </view>
   <view class="content">
-    由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
+    {{item.content}}
   </view>
 </view>
-<view class="message_box">
+<image bindtap="toEdit" class="add" src="cloud://dev-3gnk1mwt2797f6aa.6465-dev-3gnk1mwt2797f6aa-1300509077/avatar/add.png">
+</image>
+
+<!-- <view class="message_box">
   <view class="user_info">
     <image class="avatar" src="cloud://dev-3gnk1mwt2797f6aa.6465-dev-3gnk1mwt2797f6aa-1300509077/avatar/l2zfYNg1dViB92ee1f12741d86b03f75a991ba24ef97"></image>
     <view class="info">
@@ -28,4 +37,4 @@
   <view class="content">
     由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
   </view>
-</view>
+</view> -->

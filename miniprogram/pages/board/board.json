@@ -2,5 +2,6 @@
   "usingComponents": {
     "tag": "/components/tag/index"
   },
-  "navigationBarTitleText": "留言板"
+  "navigationBarTitleText": "留言板",
+  "enablePullDownRefresh": true
 }

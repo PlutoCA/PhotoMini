@@ -1,0 +1,20 @@
+/* pages/board_edit/index.wxss */
+.textarea {
+  width: 94%;
+  background-color: #fff;
+  margin: 12px auto;
+  border-radius: 10px;
+  min-height: 210px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+.buttons {
+  margin-top: 30px;
+}
+.anonymous {
+  padding: 6px 0;
+  margin: 8px auto;
+  font-size: 12px;
+  color: rgb(105, 103, 103);
+  font-weight: normal;
+}
