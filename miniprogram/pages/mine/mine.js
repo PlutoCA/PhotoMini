@@ -12,7 +12,8 @@ Page({
     avatarUrl: defaultAvatarUrl,
     openId: '',
     newUser: true,
-    nickname: ''
+    nickname: '',
+    can_upload: true
   },
 
   /**
@@ -37,12 +38,25 @@ Page({
       })
     }
   },
-
+  getSetting() {
+    db.collection('setting').get({
+      success: (res) => {
+        const { data } = res
+        console.log(res);
+        this.setData({
+          can_upload: data[0].can_upload
+        })
+      },
+      fail: (e) => {
+        console.log('err', e);
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.getSetting()
   },
 
   /**
@@ -174,9 +188,16 @@ Page({
   },
   toUpload() {
     // 这里需要关闭入口 如果过时间的话
-    wx.navigateTo({
-      url: '/pages/uploadFile/index',
-    })
+    if (this.data.can_upload) {
+      wx.navigateTo({
+        url: '/pages/uploadFile/index',
+      })
+    } else {
+      wx.showToast({
+        title: '上传入口暂时关闭了~',
+        icon: 'none'
+      })
+    }
   },
   toMyUpload() {
     wx.navigateTo({

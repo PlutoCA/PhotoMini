@@ -12,7 +12,8 @@ Page({
       type: 'success',
       show: false
     },
-    num: 0
+    num: 0,
+    anonymity: false // 是否开启匿名
   },
 
   /**
@@ -49,11 +50,25 @@ Page({
       }
     })
   },
+  getSetting() {
+    db.collection('setting').get({
+      success: (res) => {
+        const { data } = res
+        console.log(res);
+        this.setData({
+          anonymity: data[0].anonymity
+        })
+      },
+      fail: (e) => {
+        console.log('err', e);
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.getSetting()
   },
 
   /**

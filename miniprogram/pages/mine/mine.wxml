@@ -13,3 +13,9 @@
     <button wx:if="{{!newUser}}" type="primary" bindtap="toMyUpload" style="margin-top: 20px;">已上传的图片</button>
   </form>
 </view>
+
+
+<view class="weui-footer weui-footer_bottom  weui-footer_fixed-bottom">
+  <view class="weui-footer__text weui-footer__link">—— 来自一群小伙伴 ——</view>
+  <view class="weui-footer__text">Powered By Pluto  <navigator url="/pages/board/board" bindtap="toBoard" >留言处</navigator> </view>
+</view>

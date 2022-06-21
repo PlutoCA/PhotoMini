@@ -2,7 +2,7 @@
 
 <view  class="image_box">
   <view class="box" wx:for="{{images}}" wx:key="{{fileID}}">
-    <image src="{{item.fileID}}" mode="aspectFit" class="image" data-url="{{item.fileID}}" bindtap="showImage"></image>
+    <image capture-bind:longpress="adminAction" lazy-load src="{{item.fileID}}" mode="aspectFit" class="image" data-url="{{item.fileID}}" bindtap="showImage"></image>
     <view class="owner_info">来自 {{item.ownerInfo.nickname}}</view>
   </view>
 </view>

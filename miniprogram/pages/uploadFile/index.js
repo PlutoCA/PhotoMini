@@ -9,7 +9,8 @@ Page({
     envId: '',
     imgSrc: '',
     files: [],
-    userInfo: undefined
+    userInfo: undefined,
+    can_upload: false
   },
 
   onLoad(options) {
@@ -18,58 +19,81 @@ Page({
     })
     console.log(wx.getStorageSync('USERINFO'));
   },
-
-  uploadImg() {
-    if (this.data.files.length) {
-      wx.showLoading({
-        title: '上传中...',
-      });
-      Promise.all(
-          this.data.files.map(item => {
-            return wx.cloud.uploadFile({
-              // 指定上传到的云路径
-              cloudPath: 'ali/' + item.url.replace(/(.*\/)*([^.]+).*/ig, "$2"),
-              // 指定要上传的文件的小程序临时文件路径
-              filePath: item.url
-            });
-          })
-        ).then(res => {
-          console.log("上传成功", res);
-          const data = res.map((item) => ({
-            fileID: item.fileID,
-            type: 1,
-            ownerInfo: this.data.userInfo
-          }))
-          console.log(data);
-          Promise.all(
-            data.map((item) => {
-              return db.collection('album').add({
-                data: item
-              })
-            })
-          ).then((result) => {
-            wx.hideLoading()
-            console.log(result);
-            wx.showToast({
-              title: '牛哇，上传成功',
-              icon: 'success'
-            });
-            this.setData({
-              files: []
-            })
-          }).catch((err) => {
-            console.log('err', err);
-          })
-            
-          // wx.hideLoading()
+  onShow() {
+    this.getSetting()
+  },
+  getSetting() {
+    db.collection('setting').get({
+      success: (res) => {
+        const { data } = res
+        console.log(res);
+        this.setData({
+          can_upload: data[0].can_upload
         })
-        .catch(e => {
-          wx.hideLoading()
-          console.log(e);
+      },
+      fail: (e) => {
+        console.log('err', e);
+      }
+    })
+  },
+  uploadImg() {
+    if (this.data.can_upload) {
+      if (this.data.files.length) {
+        wx.showLoading({
+          title: '上传中...',
         });
+        Promise.all(
+            this.data.files.map(item => {
+              return wx.cloud.uploadFile({
+                // 指定上传到的云路径
+                cloudPath: 'ali/' + item.url.replace(/(.*\/)*([^.]+).*/ig, "$2"),
+                // 指定要上传的文件的小程序临时文件路径
+                filePath: item.url
+              });
+            })
+          ).then(res => {
+            console.log("上传成功", res);
+            const data = res.map((item) => ({
+              fileID: item.fileID,
+              type: 1,
+              ownerInfo: this.data.userInfo
+            }))
+            console.log(data);
+            Promise.all(
+              data.map((item) => {
+                return db.collection('album').add({
+                  data: item
+                })
+              })
+            ).then((result) => {
+              wx.hideLoading()
+              console.log(result);
+              wx.showToast({
+                title: '牛哇，上传成功',
+                icon: 'success'
+              });
+              this.setData({
+                files: []
+              })
+            }).catch((err) => {
+              console.log('err', err);
+            })
+              
+            // wx.hideLoading()
+          })
+          .catch(e => {
+            wx.hideLoading()
+            console.log(e);
+          });
+      } else {
+        wx.showToast({
+          title: '你这啥也没有喔',
+          icon: 'none'
+        })
+      }
     } else {
       wx.showToast({
-        title: '你这啥也没有喔',
+        title: '上传入口暂时关闭了~',
         icon: 'none'
       })
     }
@@ -91,7 +115,6 @@ Page({
     })
   },
   bindfail(e) {
-    console.log(e);
     wx.showToast({
       title: e.detail.errMsg,
       icon: 'none'

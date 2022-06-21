@@ -150,8 +150,22 @@ Page({
       })
   },
   toEdit() {
-    wx.navigateTo({
-      url: '/pages/board_edit/index',
-    })
+    if (wx.getStorageSync('USERINFO')){
+      wx.navigateTo({
+        url: '/pages/board_edit/index',
+      })
+    } else {
+      wx.showModal({
+        title: '你还没登录，速去登记用户信息',
+        confirmText: '马上去',
+        cancelText: '一会去'
+      }).then((r) => {
+        if (r.confirm) {
+          wx.switchTab({
+            url: '/pages/mine/mine',
+          })
+        }
+      })
+    }
   }
 })

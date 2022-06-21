@@ -9,7 +9,7 @@
         <view class="nickname">{{item.nickname}}</view>
         <!-- 匿名隐藏标签 -->
         <view wx:if="{{item.type !== 'anonymous'}}">
-          <tag text="{{tag.text}}" wx:for-item="tag" wx:for="{{tags}}" color="{{tag.color}}"></tag>
+          <tag text="{{tag.text}}" wx:for-item="tag" wx:for="{{item.owner.tags}}" color="{{tag.color}}"></tag>
         </view>
       </view>
       <view class="time ">{{item.update_time}}</view>

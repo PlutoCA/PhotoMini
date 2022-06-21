@@ -33,3 +33,8 @@
     </view> -->
   </view>
 </view>
+
+<view class="weui-footer weui-footer_bottom  weui-footer_fixed-bottom">
+  <view class="weui-footer__text weui-footer__link">—— 来自一群小伙伴 ——</view>
+  <view class="weui-footer__text">Powered By Pluto</view>
+</view>

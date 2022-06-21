@@ -5,10 +5,15 @@
 
     <view class="buttons">
       <button form-type="submit" data-type="public" type="default">提交</button>
-      <button form-type="submit" data-type="anonymous" class="anonymous">匿名提交（剩余 {{num}}）</button>
+      <button wx:if="{{anonymity}}" form-type="submit" data-type="anonymous" class="anonymous">匿名提交（剩余 {{num}}）</button>
     </view>
 
     <mp-toptips msg="{{toptip.msg}}" type="{{toptip.type}}" show="{{toptip.show}}"></mp-toptips>
 
   </form>
+</view>
+
+<view class="weui-footer weui-footer_bottom  weui-footer_fixed-bottom">
+  <view class="weui-footer__text weui-footer__link">—— 来自一群小伙伴 ——</view>
+  <view class="weui-footer__text">Powered By Pluto</view>
 </view>

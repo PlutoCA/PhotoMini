@@ -123,5 +123,36 @@ Page({
       urls: this.data.images.map(item => item.fileID),
       current: event.target.dataset.url
     })
+  },
+  adminAction(e) {
+    const info = wx.getStorageSync('USERINFO');
+    if (info && info.isAdmin) {
+      wx.showModal({
+        title: '真删除了喔～',
+        confirmText: '为所欲为',
+        cancelText: '取消'
+      }).then(r => {
+        if (r.confirm) {
+          db.collection('album').where({
+            fileID: e.currentTarget.dataset.url
+          }).remove({
+            success: (res) => {
+              // 把云存储的也删了
+              wx.cloud.deleteFile({
+                fileList: [fileID],
+                success: res => {
+                  this.onPullDownRefresh()
+                  wx.showToast({
+                    title: '删除成功',
+                  })
+                },
+                fail: console.error
+              })
+            }
+          })
+        }
+      })
+    }
+
   }
 })

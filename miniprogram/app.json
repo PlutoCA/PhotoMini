@@ -24,12 +24,6 @@
         "selectedIconPath": "images/home.png"
       },
       {
-        "pagePath": "pages/board/board",
-        "text": "留言板",
-        "iconPath": "images/board.png",
-        "selectedIconPath": "images/board.png"
-      },
-      {
         "pagePath": "pages/mine/mine",
         "text": "我的",
         "iconPath": "images/mine.png",
